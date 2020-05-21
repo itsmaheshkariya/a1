@@ -5,26 +5,27 @@
 import $ from 'https://deno.land/x/a1/index.ts'
 
 $({
-   port:8080, // Default port is 8000
+   port:8080, // Default Port is 8000
    rest:{
             '/hello':{
                     method:'GET', // Default Method is GET
-                    code:()=>{
+                    code:(req:any)=>{
+                        console.log(req.headers)
                         return {body:'Hello World'}
                             }
                     },
-                '/one/two/two':{
+                '/one/two/three':{
                         method:'POST',
-                        code:()=>{
-                                return {body:'Mahesh one two'}
+                        code:(req:any)=>{
+                                console.log(req.body,req.headers,req.params)
+                                return {body:JSON.stringify(req)}
                                 }
                         },
-                '/one/:id/:name':{  // For Dynamic Links Like Express
-                        method:'GET',
-                        code:(params:any)=>{ 
-                                return {
-                                        body:'Id '+params.id+'\n'+ 'Name '+params.name
-                                }
+                '/one/:id/:name':{ // For Dynamic Links Like Express
+                        method:'POST',
+                        code:(req:any)=>{
+                                console.log(req.body,req.headers,req.params)
+                                return { body:'Id '+req.params.id+'\n'+ 'Name '+req.params.name }
                         }
                 }
 
