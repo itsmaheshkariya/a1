@@ -11,6 +11,14 @@ export default $ = async(val:any) => {
     }
     let __s__:any = serve({ port: __s})
     for await (const req of __s__) {
+
+            let __headers__ = req.headers
+            let __headers_obj__:any = {}
+            for await(const i of __headers__){
+                __headers_obj__[i[0]] = i[1]
+            }
+            //console.log(__headers_obj__)
+
        let len:any = Object.keys(val.rest).length;
         if(len != 0){
             let __index:number = -1;
@@ -27,7 +35,7 @@ export default $ = async(val:any) => {
                                 if(req.method == 'GET')
                                         { 
                                                 let __func = __route.code
-                                                let __ans = __func();
+                                                let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":{},"params":{}})));
                                                 req.respond(__ans);
                                         }
                                 else{
@@ -43,16 +51,15 @@ export default $ = async(val:any) => {
                                         }else{
                                                  __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
                                         }
-                                       // console.log(__json_data__)
                                          try{
                                                 let __json_parse__:any = JSON.parse(__json_data__)
                                                 if(__json_parse__.length > 0){
                                                         let __func = __route.code
-                                                        let __ans = __func(__json_parse__);
+                                                        let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":{}})));
                                                         req.respond(__ans);
                                                 }else if(__json_parse__.length == undefined){
                                                         let __func = __route.code
-                                                        let __ans = __func(__json_parse__);
+                                                        let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":{}})));
                                                         req.respond(__ans);
                                                 }
                                           }catch(e){
@@ -86,7 +93,8 @@ export default $ = async(val:any) => {
 
                                         if(req.method == 'GET'){
                                     let __func = __route.code
-                                    let __ans = __func(__params__);
+                                   // let __ans = __func(__params__);
+                                    let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":{},"params":__params__})));
                                     req.respond(__ans);
                                 }else{
                                         let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
@@ -106,11 +114,11 @@ export default $ = async(val:any) => {
                                                 
                                                 if(__json_parse__.length > 0){
                                                         let __func = __route.code
-                                                        let __ans = __func(__json_parse__,__params__);
+                                                        let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":__params__})));
                                                         req.respond(__ans);
                                                 }else if(__json_parse__.length == undefined){
                                                         let __func = __route.code
-                                                        let __ans = __func(__json_parse__,__params__);
+                                                        let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":__params__})));
                                                         req.respond(__ans);
                                                 }
                                         }catch(e){

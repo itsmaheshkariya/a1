@@ -5,21 +5,23 @@ $({
    rest:{
             '/hello':{
                     method:'GET',
-                    code:()=>{
+                    code:(req:any)=>{
+                        console.log(req.headers)
                         return {body:'Hello World'}
                             }
                     },
                 '/one/two/three':{
                         method:'POST',
-                        code:(request:any)=>{
-                                return {body:JSON.stringify(request)}
+                        code:(req:any)=>{
+                                console.log(req.body,req.headers,req.params)
+                                return {body:JSON.stringify(req)}
                                 }
                         },
                 '/one/:id/:name':{
                         method:'POST',
-                        code:(request:any,params:any)=>{
-                                console.log(JSON.stringify(request))
-                                return { body:'Id '+params.id+'\n'+ 'Name '+params.name }
+                        code:(req:any)=>{
+                            console.log(req.body,req.headers,req.params)
+                                return { body:'Id '+req.params.id+'\n'+ 'Name '+req.params.name }
                         }
                 }
 
