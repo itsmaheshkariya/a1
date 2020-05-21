@@ -11,7 +11,7 @@ export default $ = async(val:any) => {
     }
     let __s__:any = serve({ port: __s})
     for await (const req of __s__) {
-        let len:any = Object.keys(val.rest).length;
+       let len:any = Object.keys(val.rest).length;
         if(len != 0){
             let __index:number = -1;
             let __flag = 0;
@@ -24,9 +24,31 @@ export default $ = async(val:any) => {
                     let __route:any =  Object.values(val.rest)[__index];
                     if(__route.method != undefined){
                         if(__route.method == req.method){
-                            let __func = __route.code
-                            let __ans = __func();
-                            req.respond(__ans);
+                                if(req.method == 'GET')
+                                        { 
+                                                let __func = __route.code
+                                                let __ans = __func();
+                                                req.respond(__ans);
+                                        }
+                                else{
+                                       // var uint8array = new TextEncoder("utf-8").encode("¢");
+                                        let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
+                                        let __json_data__:any;
+                                        if(__str.indexOf('{') < __str.indexOf('[')){
+                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}'))
+                                        }else{
+                                                 __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
+                                        }
+                                        
+                                        let __json_parse__:any = JSON.parse(__json_data__)
+                                        if(__json_parse__.length > 0){
+                                                let __func = __route.code
+                                                let __ans = __func(__json_parse__);
+                                                req.respond(__ans);
+                                        }
+    
+                                }
+
                             }
                         }
                     }  
@@ -48,9 +70,29 @@ export default $ = async(val:any) => {
                             let __route:any =  Object.values(val.rest)[__index];
                              if(__route.method != undefined){
                                 if(__route.method == req.method){
+
+                                        if(req.method == 'GET'){
                                     let __func = __route.code
                                     let __ans = __func(__params__);
                                     req.respond(__ans);
+                                }else{
+                                        let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
+                                        let __json_data__:any;
+                                        if(__str.indexOf('{') < __str.indexOf('[')){
+                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}'))
+                                        }else{
+                                                 __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
+                                        }
+                                        
+                                        let __json_parse__:any = JSON.parse(__json_data__)
+                                        if(__json_parse__.length > 0){
+                                                let __func = __route.code
+                                                let __ans = __func(__json_parse__,__params__);
+                                                req.respond(__ans);
+                                        }
+                                }
+
+
                                     }
                                 }
                             
@@ -97,3 +139,10 @@ export default $ = async(val:any) => {
 
 //         }
 // })
+
+
+
+
+
+
+

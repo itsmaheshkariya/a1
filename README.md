@@ -1,4 +1,4 @@
-# A1<span style="color:blue">Micro Framework</span>.
+# A1 <span style="color:blue">Micro Framework</span>.
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
 `Example`
 ```ts
@@ -14,7 +14,7 @@ $({
                             }
                     },
                 '/one/two/two':{
-                        method:'GET',
+                        method:'POST',
                         code:()=>{
                                 return {body:'Mahesh one two'}
                                 }
