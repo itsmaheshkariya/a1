@@ -4,10 +4,10 @@ export default $ = async(val:any) => {
     let __s:any;
     if(val.port == undefined){
          __s = 8000
-         console.log('\x1b[32m%s\x1b[0m','Server running on https://localhost:8000')
+         console.log('\x1b[32m%s\x1b[0m','༼ つ ◕_◕ ༽つ Server running on https://localhost:8000')
     }else{
          __s = val.port;   
-         console.log('\x1b[32m%s\x1b[0m','Server running on https://localhost:'+val.port)
+         console.log('\x1b[32m%s\x1b[0m','༼ つ ◕_◕ ༽つ Server running on https://localhost:'+val.port)
     }
     let __s__:any = serve({ port: __s})
     for await (const req of __s__) {
@@ -31,22 +31,35 @@ export default $ = async(val:any) => {
                                                 req.respond(__ans);
                                         }
                                 else{
-                                       // var uint8array = new TextEncoder("utf-8").encode("¢");
                                         let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
                                         let __json_data__:any;
-                                        if(__str.indexOf('{') < __str.indexOf('[')){
-                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}'))
+                                        if(__str.indexOf('[') == -1){
+                                                __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}')+1)
+                                        }else if(__str.indexOf('{') == -1){
+                                                __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
+                                        }
+                                        else if(__str.indexOf('{') < __str.indexOf('[')){
+                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}')+1)
                                         }else{
                                                  __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
                                         }
-                                        
-                                        let __json_parse__:any = JSON.parse(__json_data__)
-                                        if(__json_parse__.length > 0){
-                                                let __func = __route.code
-                                                let __ans = __func(__json_parse__);
-                                                req.respond(__ans);
-                                        }
-    
+                                       // console.log(__json_data__)
+                                         try{
+                                                let __json_parse__:any = JSON.parse(__json_data__)
+                                                if(__json_parse__.length > 0){
+                                                        let __func = __route.code
+                                                        let __ans = __func(__json_parse__);
+                                                        req.respond(__ans);
+                                                }else if(__json_parse__.length == undefined){
+                                                        let __func = __route.code
+                                                        let __ans = __func(__json_parse__);
+                                                        req.respond(__ans);
+                                                }
+                                          }catch(e){
+                                                console.log('\x1b[31m%s\x1b[0m','༼ つ ◕_◕ ༽つ check your json')
+                                          }finally{
+                                               
+                                          }                                      
                                 }
 
                             }
@@ -78,19 +91,34 @@ export default $ = async(val:any) => {
                                 }else{
                                         let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
                                         let __json_data__:any;
-                                        if(__str.indexOf('{') < __str.indexOf('[')){
-                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}'))
+                                        if(__str.indexOf('[') == -1){
+                                                __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}')+1)
+                                        }else if(__str.indexOf('{') == -1){
+                                                __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
+                                        }
+                                        else if(__str.indexOf('{') < __str.indexOf('[')){
+                                                 __json_data__ = __str.slice(__str.indexOf('{'),__str.lastIndexOf('}')+1)
                                         }else{
                                                  __json_data__ = __str.slice(__str.indexOf('['),__str.lastIndexOf(']')+1)
                                         }
+                                        try{
+                                                let __json_parse__:any = JSON.parse(__json_data__)
+                                                
+                                                if(__json_parse__.length > 0){
+                                                        let __func = __route.code
+                                                        let __ans = __func(__json_parse__,__params__);
+                                                        req.respond(__ans);
+                                                }else if(__json_parse__.length == undefined){
+                                                        let __func = __route.code
+                                                        let __ans = __func(__json_parse__,__params__);
+                                                        req.respond(__ans);
+                                                }
+                                        }catch(e){
+                                                console.log('\x1b[31m%s\x1b[0m','༼ つ ◕_◕ ༽つ check your json')
+                                        }finally{
                                         
-                                        let __json_parse__:any = JSON.parse(__json_data__)
-                                        if(__json_parse__.length > 0){
-                                                let __func = __route.code
-                                                let __ans = __func(__json_parse__,__params__);
-                                                req.respond(__ans);
+                                        }  
                                         }
-                                }
 
 
                                     }

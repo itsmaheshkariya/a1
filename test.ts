@@ -19,9 +19,7 @@ $({
                         method:'POST',
                         code:(request:any,params:any)=>{
                                 console.log(JSON.stringify(request))
-                                return {
-                                       body:'Id '+params.id+'\n'+ 'Name '+params.name
-                                }
+                                return { body:'Id '+params.id+'\n'+ 'Name '+params.name }
                         }
                 }
 
