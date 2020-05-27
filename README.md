@@ -46,6 +46,12 @@ $({
                             console.log(req.body, req.headers, req.params)
                             return req.params.id
                     }
+            },
+            '/register':{
+                    method:'POST', // GET , POST , PUT , DELETE
+                    code:(req:any)=>{
+                            return req.body
+                    }
             }
         }
 })
