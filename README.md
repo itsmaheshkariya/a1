@@ -1,6 +1,6 @@
 # A1 <span style="color:blue">Micro Framework</span>.
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
-`Example - Server Side`
+`Example - Server Side index.ts`
 ```ts
 import $,{render} from 'https://deno.land/x/a1/server.ts'
 const client = await render('./index.html')
@@ -23,9 +23,7 @@ $({
 
 ```
 
-`Example - Client Side`
-
-#### index.html
+`Example - Client Side index.html`
 ```html
 <qcom-hello-world></qcom-hello-world>
 <script type="module">
@@ -35,6 +33,10 @@ $({
       template:()=>h1('Hello World')
   })
 </script>
+```
+`Run`
+```
+deno run -A index.ts
 ```
 
 ## Rules 
