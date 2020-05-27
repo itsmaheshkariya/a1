@@ -177,7 +177,7 @@ export default $ = async(val:any) => {
 // })
 
 
-export let render = async(val) =>{
+export let render = async(val:any) =>{
         const client = await new TextDecoder("utf-8")
         .decode(
             await Deno.readFile(val)
