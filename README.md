@@ -2,33 +2,22 @@
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
 `Example - Server Side`
 ```ts
-import $ from 'https://deno.land/x/a1/index.ts'
-
+import $,{render} from 'https://deno.land/x/a1/server.ts'
+const client = await render('./index.html')
 $({
-   port:8080, // Default Port is 8000
+   port:8080,
    rest:{
-            '/hello':{
-                    method:'GET', // Default Method is GET
-                    code:(req:any)=>{
-                        console.log(req.headers)
-                        return {body:'Hello World'}
-                            }
+            '/':{
+                    method:'GET',
+                    code:client
                     },
-                '/one/two/three':{
-                        method:'POST',
-                        code:(req:any)=>{
-                                console.log(req.body,req.headers,req.params)
-                                return {body:JSON.stringify(req)}
-                                }
-                        },
-                '/one/:id/:name':{ // For Dynamic Links Like Express
-                        method:'POST',
-                        code:(req:any)=>{
-                                console.log(req.body,req.headers,req.params)
-                                return { body:'Id '+req.params.id+'\n'+ 'Name '+req.params.name }
-                        }
-                }
-
+            '/:id/:name':{
+                    method:'POST',
+                    code:(req:any)=>{
+                            console.log(req.body, req.headers, req.params)
+                            return 'Id '+req.params.id+'\n'+ 'Name '+req.params.name
+                    }
+            }
         }
 })
 
@@ -41,7 +30,7 @@ $({
 <qcom-hello-world></qcom-hello-world>
 
 <script type="module">
-  import $ from 'https://unpkg.com/@qcom.io/qcom'
+  import $ from 'https://deno.land/x/a1/client.js'
  
   $({
       name:'QcomHelloWorld',
@@ -65,7 +54,7 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
 <qcom-functions></qcom-functions>
 
 <script type="module">
-  import $ from 'https://unpkg.com/@qcom.io/qcom'
+  import $ from 'https://deno.land/x/a1/client.js'
   $({
       name:'QcomFunctions',
       template:()=>div(h1({click:'QcomFunctions.log()'},'Click Here')),
@@ -86,7 +75,7 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
 <qcom-data></qcom-data>
 
 <script type="module">
-  import $ from 'https://unpkg.com/@qcom.io/qcom'
+  import $ from 'https://deno.land/x/a1/client.js'
   $({
       name:'QcomData',
       data:{
@@ -116,7 +105,7 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
 <qcom-loop></qcom-loop>
 
 <script type="module">
-  import $ from 'https://unpkg.com/@qcom.io/qcom'
+  import $ from 'https://deno.land/x/a1/client.js'
   $({
       name:'QcomLoop',
       data:{
@@ -150,7 +139,7 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
 <qcom-get></qcom-get>
 
 <script type="module">
-import $ from 'https://unpkg.com/@qcom.io/qcom'
+import $ from 'https://deno.land/x/a1/client.js'
 $({
     name:'QcomGet',
     data:{
@@ -187,7 +176,7 @@ $({
 <qcom-css-example></qcom-css-example>
 
 <script type="module">
-  import $,{color} from 'https://unpkg.com/@qcom.io/qcom'
+  import $,{color} from 'https://deno.land/x/a1/client.js'
   $({
       name:'QcomCssExample',
       globalcss:{ /* Global CSS*/
@@ -219,7 +208,7 @@ $({
 ```html
 <qcom-main></qcom-main>
 <script type="module">
-import $ from 'https://unpkg.com/@qcom.io/qcom'
+import $ from 'https://deno.land/x/a1/client.js'
     let QcomOne = {
         name:'QcomOne',
         data:{
@@ -296,7 +285,7 @@ import $ from 'https://unpkg.com/@qcom.io/qcom'
 ```
 
 ### Demo
-![demoofqcom](https://unpkg.com/@qcom.io/qcom@1.0.36/result.png)
+![demoofqcom](https://deno.land/x/a1/client.js@1.0.36/result.png)
 
 
 
@@ -320,7 +309,7 @@ p(  { to:'firstname' ,   class:'mt12' , id:'firstname' , style: {color:color.red
 <details>
 <summary>Use <code>color</code> : For color coding </summary>
 <pre><code>
-import $,{color} from 'https://unpkg.com/@qcom.io/qcom'
+import $,{color} from 'https://deno.land/x/a1/client.js'
 $({
     theme:{
         color:color.red,
@@ -361,10 +350,10 @@ $({
 
 
 ### Colors 
-![color00](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color00.png)
-![color0](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color0.png)
-![color1](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color1.png)
-![color2](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color2.png)
-![color3](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color3.png)
-![color4](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color4.png)
-![color5](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color5.png)
+![color00](https://deno.land/x/a1/client.js@1.0.36/raw/color00.png)
+![color0](https://deno.land/x/a1/client.js@1.0.36/raw/color0.png)
+![color1](https://deno.land/x/a1/client.js@1.0.36/raw/color1.png)
+![color2](https://deno.land/x/a1/client.js@1.0.36/raw/color2.png)
+![color3](https://deno.land/x/a1/client.js@1.0.36/raw/color3.png)
+![color4](https://deno.land/x/a1/client.js@1.0.36/raw/color4.png)
+![color5](https://deno.land/x/a1/client.js@1.0.36/raw/color5.png)
