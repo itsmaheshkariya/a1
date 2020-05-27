@@ -1,10 +1,17 @@
 <body>
-  <qcom-hello-world></qcom-hello-world>
-  <script type="module">
+    <qcom-functions></qcom-functions>
+    <script type="module">
     import $ from 'https://deno.land/x/a1/client.js'
     $({
-        name:'QcomHelloWorld',
-        template:()=>h1('Hello World')
+        name:'QcomFunctions',
+        template:()=>div(h1({click:'QcomFunctions.log()'},'Click Here')),
+        code:{
+            log:()=>{
+                //Do something here
+                alert('clicked')
+            }
+            //Create your own functions here like log()
+        }
     })
-  </script>
+    </script>
 </body>

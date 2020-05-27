@@ -2,7 +2,7 @@
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
 `Example - Server Side index.ts`
 ```ts
-import $,{render} from 'https://deno.land/a1/server.ts'
+import $,{render} from 'https://deno.land/x/a1/server.ts'
 const client = await render('./index.html')
 $({
    port:8080,
