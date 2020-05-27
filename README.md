@@ -10,17 +10,9 @@ $({
             '/':{
                     method:'GET',
                     code:client
-                    },
-            '/:id/:name':{
-                    method:'POST',
-                    code:(req:any)=>{
-                            console.log(req.body, req.headers, req.params)
-                            return 'Id '+req.params.id+'\n'+ 'Name '+req.params.name
                     }
-            }
         }
 })
-
 ```
 
 `Example - Client Side index.html`
@@ -38,6 +30,25 @@ $({
 ```
 deno run -A index.ts
 ```
+
+`Example - Dynamic Links`
+```ts
+import $,{render} from 'https://deno.land/x/a1/server.ts'
+const client = await render('./index.html')
+$({
+   port:8080,
+   rest:{
+            '/:id':{
+                    method:'GET', // GET , POST , PUT , DELETE
+                    code:(req:any)=>{
+                            console.log(req.body, req.headers, req.params)
+                            return req.params.id
+                    }
+            }
+        }
+})
+```
+
 
 ## Rules 
 `HTML`
