@@ -309,7 +309,7 @@ import $ from 'https://deno.land/x/a1/client.js'
 ```
 
 ### Demo
-![demoofqcom](https://deno.land/x/a1/client.js@1.0.36/result.png)
+![demoofqcom](https://unpkg.com/@qcom.io/qcom@1.0.36/result.png)
 
 
 
@@ -359,12 +359,12 @@ $({
                 btn({route:'/QcomOne',is:'link', class:'ml12'},'One'),
                 btn({route:'/QcomTwo',is:'link', class:'ml12'},'Two'),
             ),
-            div({class:'mt12', id:'root'})    //<-|
-        ),                                   //   |
-        include:[QcomOne,QcomTwo,QcomError],//    |
-        router:{                           //     |
-            root:'QcomOne',               //      |
-            view:'root', // id of div <-----------|
+            div({class:'mt12', id:'root'})
+        ),
+        include:[QcomOne,QcomTwo,QcomError],
+        router:{
+            root:'QcomOne',
+            view:'root', // id of div
             error:$('QcomError')(),
             links:['QcomOne','QcomTwo']
         }

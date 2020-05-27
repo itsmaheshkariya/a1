@@ -1,17 +1,77 @@
 <body>
-    <qcom-functions></qcom-functions>
-    <script type="module">
-    import $ from 'https://deno.land/x/a1/client.js'
-    $({
-        name:'QcomFunctions',
-        template:()=>div(h1({click:'QcomFunctions.log()'},'Click Here')),
+<qcom-main></qcom-main>
+<script type="module">
+import $ from 'https://deno.land/x/a1/client.js'
+    let QcomOne = {
+        name:'QcomOne',
+        data:{
+            items:[
+                {name:'mahesh'},{name:'dipak'}
+            ]
+        },
+        template:()=>div(h1('Page One'),
+                ()=>this.data.items.map(item =>
+                        div(item.name)))
+    }
+    let QcomTwo ={
+        name:'QcomTwo',
+        data:{
+            items:[]
+        },
+        template:()=>row(
+            col(form(
+                material(
+                    h1('Registration'),
+                    input({id:'name',class:'mb6',placeholder:'Name'}),
+                    input({id:'email',class:'mb6',placeholder:'Email'}),
+                    input({id:'password',class:'mb6',placeholder:'Password'}),
+                    right(btn({click:'QcomTwo.post()',is:'md'},'Submit')))
+            )),
+            col(table(
+                tr(
+                    td('Name'),
+                    td('Email'),
+                    td('Password')
+                ),
+                ()=>this.data.items.map(item =>
+                        tr(td(item.name),
+                            td(item.email),
+                            td(item.password)))
+            ))
+        ),
         code:{
-            log:()=>{
-                //Do something here
-                alert('clicked')
+            post:()=>{
+                this.data.items.push({
+                    name:getval('name'),
+                    email:getval('email'),
+                    password:getval('password')
+                })
+                this.render()
             }
-            //Create your own functions here like log()
         }
+    }
+    let QcomError = {
+        name:'QcomError',template:()=>div(
+            h1('404 Page')
+        )
+    }
+    $({
+        name:'QcomMain',
+        template:()=>div(
+                appbar(
+                    btn({route:'/QcomOne',is:'link', class:'ml12'},'One'),
+                    btn({route:'/QcomTwo',is:'link', class:'ml12'},'Two'),
+                    btn({route:'/QcomError',is:'link', class:'ml12'},'404')
+                ),
+                div({class:'mt12', id:'root'})
+            ),
+       include:[QcomOne,QcomTwo,QcomError],
+            router:{
+                root:'QcomOne',
+                view:'root',
+                error:$('QcomError')(),
+                links:['QcomOne','QcomTwo']
+            }
     })
-    </script>
+</script>
 </body>
