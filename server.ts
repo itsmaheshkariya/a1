@@ -36,6 +36,7 @@ export default $ = async(val:any) => {
                                         { 
                                                 let __func = __route.code
                                                 let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":{},"params":{}})));
+                                                console.log(__ans)
                                                 req.respond({body:__ans});
                                         }
                                 else{

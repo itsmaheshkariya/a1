@@ -17,14 +17,16 @@ $({
 
 `Example - Client Side index.html`
 ```html
-<qcom-hello-world></qcom-hello-world>
-<script type="module">
-  import $ from 'https://deno.land/x/a1/client.js'
-  $({
-      name:'QcomHelloWorld',
-      template:()=>h1('Hello World')
-  })
-</script>
+<body>
+    <qcom-hello-world></qcom-hello-world>
+    <script type="module">
+    import $ from 'https://deno.land/x/a1/client.js'
+    $({
+        name:'QcomHelloWorld',
+        template:()=>h1('Hello World')
+    })
+    </script>
+</body>
 ```
 `Run`
 ```
@@ -62,59 +64,61 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
 
 #### Functions
 ```html
-<qcom-functions></qcom-functions>
-
-<script type="module">
-  import $ from 'https://deno.land/x/a1/client.js'
-  $({
-      name:'QcomFunctions',
-      template:()=>div(h1({click:'QcomFunctions.log()'},'Click Here')),
-      code:{
-          log:()=>{
-              //Do something here
-              alert('clicked')
-          }
-          //Create your own functions here like log()
-      }
-  })
-</script>
+<body>
+    <qcom-functions></qcom-functions>
+    <script type="module">
+    import $ from 'https://deno.land/x/a1/client.js'
+    $({
+        name:'QcomFunctions',
+        template:()=>div(h1({click:'QcomFunctions.log()'},'Click Here')),
+        code:{
+            log:()=>{
+                //Do something here
+                alert('clicked')
+            }
+            //Create your own functions here like log()
+        }
+    })
+    </script>
+</body>
 ```
 
 
 #### Data Management
 ```html
-<qcom-data></qcom-data>
-
-<script type="module">
-  import $ from 'https://deno.land/x/a1/client.js'
-  $({
-      name:'QcomData',
-      data:{
-          counter:0
-      },
-      template:()=>div( /* div must be here to wrap all internal tags*/
-                        h1(this.data.counter),
-                        button({click:'QcomData.add()'},'+'),
-                        button({click:'QcomData.sub()'},'-')
-                     ),
-      code:{
-            add:()=>{
-                    this.data.counter +=  1
-                    this.render()
-            },
-            sub:()=>{
-                    this.data.counter -=  1
-                    this.render()
-            }
-      }
-  })
-</script>
+<body>
+    <qcom-data></qcom-data>
+    <script type="module">
+    import $ from 'https://deno.land/x/a1/client.js'
+    $({
+        name:'QcomData',
+        data:{
+            counter:0
+        },
+        template:()=>div( /* div must be here to wrap all internal tags*/
+                            h1(this.data.counter),
+                            button({click:'QcomData.add()'},'+'),
+                            button({click:'QcomData.sub()'},'-')
+                        ),
+        code:{
+                add:()=>{
+                        this.data.counter +=  1
+                        this.render()
+                },
+                sub:()=>{
+                        this.data.counter -=  1
+                        this.render()
+                }
+        }
+    })
+    </script>
+</body>
 ```
 
 #### Loop
 ```html
+<body>
 <qcom-loop></qcom-loop>
-
 <script type="module">
   import $ from 'https://deno.land/x/a1/client.js'
   $({
@@ -143,12 +147,13 @@ h1({class:'head', style:{ color:'red', backgroundColor : 'Yellow' }, id:'heading
                 )
   })
 </script>
+</body>
 ```
 
 #### Get Api
 ```html
+<body>
 <qcom-get></qcom-get>
-
 <script type="module">
 import $ from 'https://deno.land/x/a1/client.js'
 $({
@@ -178,14 +183,14 @@ $({
         }
     }
 })
-
 </script>
+</body>
 ```
 
 #### Styling (camelCase is required while using style)
 ```html
+<body>
 <qcom-css-example></qcom-css-example>
-
 <script type="module">
   import $,{color} from 'https://deno.land/x/a1/client.js'
   $({
@@ -214,9 +219,11 @@ $({
   })
 
 </script>
+</body>
 ```
 #### Qcom Router
 ```html
+<body>
 <qcom-main></qcom-main>
 <script type="module">
 import $ from 'https://deno.land/x/a1/client.js'
@@ -292,7 +299,7 @@ import $ from 'https://deno.land/x/a1/client.js'
             }
     })
 </script>
-
+</body>
 ```
 
 ### Demo
