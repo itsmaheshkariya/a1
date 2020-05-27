@@ -374,10 +374,10 @@ $({
 
 
 ### Colors 
-![color00](https://deno.land/x/a1/client.js@1.0.36/raw/color00.png)
-![color0](https://deno.land/x/a1/client.js@1.0.36/raw/color0.png)
-![color1](https://deno.land/x/a1/client.js@1.0.36/raw/color1.png)
-![color2](https://deno.land/x/a1/client.js@1.0.36/raw/color2.png)
-![color3](https://deno.land/x/a1/client.js@1.0.36/raw/color3.png)
-![color4](https://deno.land/x/a1/client.js@1.0.36/raw/color4.png)
-![color5](https://deno.land/x/a1/client.js@1.0.36/raw/color5.png)
+![color00](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color00.png)
+![color0](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color0.png)
+![color1](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color1.png)
+![color2](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color2.png)
+![color3](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color3.png)
+![color4](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color4.png)
+![color5](https://unpkg.com/@qcom.io/qcom@1.0.36/raw/color5.png)
