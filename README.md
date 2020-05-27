@@ -28,10 +28,8 @@ $({
 #### index.html
 ```html
 <qcom-hello-world></qcom-hello-world>
-
 <script type="module">
   import $ from 'https://deno.land/x/a1/client.js'
- 
   $({
       name:'QcomHelloWorld',
       template:()=>h1('Hello World')
