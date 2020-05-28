@@ -1,6 +1,10 @@
 # A1 <span style="color:blue">Micro Framework</span>.
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
-`Example - Server Side index.ts`
+[![license](https://img.shields.io/github/license/maheshkareeya/a1.svg)](https://github.com/maheshkareeya/a1)
+[![tag](https://img.shields.io/badge/deno->=1.0.0-green.svg)](https://github.com/denoland/deno)
+[![tag](https://img.shields.io/badge/std-0.53.0-green.svg)](https://github.com/denoland/deno)
+
+`index.ts`
 ```ts
 import $,{render} from 'https://deno.land/x/a1/server.ts'
 const client = await render('./index.html')
@@ -15,7 +19,7 @@ $({
 })
 ```
 
-`Example - Client Side index.html`
+`index.html`
 ```html
 <body>
   <qcom-hello-world></qcom-hello-world>
