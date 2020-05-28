@@ -1,6 +1,6 @@
 # A1 <span style="color:blue">Micro Framework</span>.
 ###  For Rapid API and Application Development in Deno ༼ つ ◕_◕ ༽つ.
-[![license](https://img.shields.io/github/license/maheshkareeya/a1.svg)](https://github.com/maheshkareeya/a1)
+[![GitHub license](https://img.shields.io/github/license/maheshkareeya/a1)](https://github.com/maheshkareeya/a1/blob/master/LICENSE.txt)
 [![tag](https://img.shields.io/badge/deno->=1.0.0-green.svg)](https://github.com/denoland/deno)
 [![tag](https://img.shields.io/badge/std-0.53.0-green.svg)](https://github.com/denoland/deno)
 
