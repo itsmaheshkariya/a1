@@ -5,7 +5,9 @@ $({
    rest:{
             '/':{
                     method:'GET',
-                    code:(req:any)=>client
+                    code:async(req:any)=>{
+                        return {body:client}
+                    }
                 }
         }
 })

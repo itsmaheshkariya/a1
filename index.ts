@@ -6,7 +6,7 @@ export default $ = async(val:any) => {
          __s = 8000
          console.log('\x1b[32m%s\x1b[0m','༼ つ ◕_◕ ༽つ Server running on https://localhost:8000')
     }else{
-         __s = val.port;   
+         __s = val.port;
          console.log('\x1b[32m%s\x1b[0m','༼ つ ◕_◕ ༽つ Server running on https://localhost:'+val.port)
     }
     let __s__:any = serve({ port: __s})
@@ -24,7 +24,7 @@ export default $ = async(val:any) => {
             let __index:number = -1;
             let __flag = 0;
             let __dump_arr:any = []
-            Object.keys(val.rest).map((item)=>{
+            Object.keys(val.rest).map(async(item)=>{
                 __index++;
                 if(item == req.url){
                     __dump_arr.push(item)
@@ -33,10 +33,10 @@ export default $ = async(val:any) => {
                     if(__route.method != undefined){
                         if(__route.method == req.method){
                                 if(req.method == 'GET')
-                                        { 
-                                                let __func = __route.code
+                                        {
+                                                let __func = await __route.code
                                                 let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":{},"params":{}})));
-                                                req.respond(__ans);
+                                                req.respond(await __ans);
                                         }
                                 else{
                                         let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
@@ -54,29 +54,29 @@ export default $ = async(val:any) => {
                                          try{
                                                 let __json_parse__:any = JSON.parse(__json_data__)
                                                 if(__json_parse__.length > 0){
-                                                        let __func = __route.code
+                                                        let __func = await __route.code
                                                         let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":{}})));
-                                                        req.respond(__ans);
+                                                        await req.respond(await __ans);
                                                 }else if(__json_parse__.length == undefined){
-                                                        let __func = __route.code
+                                                        let __func = await __route.code
                                                         let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":{}})));
-                                                        req.respond(__ans);
+                                                        await req.respond(await __ans);
                                                 }
                                           }catch(e){
                                                 console.log('\x1b[31m%s\x1b[0m','༼ つ ◕_◕ ༽つ check your json')
                                           }finally{
-                                               
-                                          }                                      
+
+                                          }
                                 }
 
                             }
                         }
-                    }  
+                    }
             })
             if(__dump_arr.length == 0)
             {
                 let __index:number = -1;
-                Object.keys(val.rest).map((item)=>{
+                Object.keys(val.rest).map(async(item)=>{
                     __index++;
                     if (~item.indexOf("/:")){
                            let __url_attributes = req.url.split('/').filter((item:any)=>item!='')
@@ -92,10 +92,10 @@ export default $ = async(val:any) => {
                                 if(__route.method == req.method){
 
                                         if(req.method == 'GET'){
-                                    let __func = __route.code
+                                    let __func = await __route.code
                                    // let __ans = __func(__params__);
                                     let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":{},"params":__params__})));
-                                    req.respond(__ans);
+                                    req.respond(await __ans);
                                 }else{
                                         let __str:any = new TextDecoder("utf-8").decode(req.r.buf);
                                         let __json_data__:any;
@@ -111,34 +111,34 @@ export default $ = async(val:any) => {
                                         }
                                         try{
                                                 let __json_parse__:any = JSON.parse(__json_data__)
-                                                
+
                                                 if(__json_parse__.length > 0){
-                                                        let __func = __route.code
+                                                        let __func = await __route.code
                                                         let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":__params__})));
-                                                        req.respond(__ans);
+                                                        req.respond(await __ans);
                                                 }else if(__json_parse__.length == undefined){
-                                                        let __func = __route.code
+                                                        let __func = await __route.code
                                                         let __ans = __func(JSON.parse(JSON.stringify({"headers":__headers_obj__,"body":__json_parse__,"params":__params__})));
-                                                        req.respond(__ans);
+                                                        req.respond(await __ans);
                                                 }
                                         }catch(e){
                                                 console.log('\x1b[31m%s\x1b[0m','༼ つ ◕_◕ ༽つ check your json')
                                         }finally{
-                                        
-                                        }  
+
+                                        }
                                         }
 
 
                                     }
                                 }
-                            
+
                         }
 
                 })
             }
         }
     }
-    
+
 }
 
 
@@ -177,8 +177,10 @@ export default $ = async(val:any) => {
 // })
 
 
-
-
-
-
-
+export let render = async(val:any) =>{
+        const client = await new TextDecoder("utf-8")
+        .decode(
+            await Deno.readFile(val)
+        );
+        return client;
+    }

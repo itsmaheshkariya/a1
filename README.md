@@ -16,7 +16,9 @@ $({
    rest:{
             '/':{
                     method:'GET',
-                    code:(req:any)=>client
+                    code:async(req:any)=>{
+                        return {body:client}
+                        }
                 }
         }
 })
@@ -49,15 +51,15 @@ $({
    rest:{
             '/:id':{
                     method:'GET', // GET , POST , PUT , DELETE
-                    code:(req:any)=>{
+                    code:asyn(req:any)=>{
                             console.log(req.body, req.headers, req.params)
-                            return req.params.id
+                            return {body:req.params.id}
                     }
             },
             '/register':{
                     method:'POST', // GET , POST , PUT , DELETE
-                    code:(req:any)=>{
-                            return req.body
+                    code:asyc(req:any)=>{
+                            return {body:req.body}
                     }
             }
         }
