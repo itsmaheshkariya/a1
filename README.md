@@ -51,14 +51,14 @@ $({
    rest:{
             '/:id':{
                     method:'GET', // GET , POST , PUT , DELETE
-                    code:asyn(req:any)=>{
+                    code:async(req:any)=>{
                             console.log(req.body, req.headers, req.params)
                             return {body:req.params.id}
                     }
             },
             '/register':{
                     method:'POST', // GET , POST , PUT , DELETE
-                    code:asyc(req:any)=>{
+                    code:async(req:any)=>{
                             return {body:req.body}
                     }
             }
